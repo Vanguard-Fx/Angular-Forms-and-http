@@ -1,0 +1,36 @@
+<h2>PokeAPI</h2>
+<form #myForm="ngForm" (submit)="onFormSubmit(myForm)">
+  <div class="form-group">
+    <label for="pokemonName">Inserisci nome pokemon</label>
+    <input
+      type="text"
+      class="form-control"
+      id="pokemonName"
+      required
+      [(ngModel)]="pokemonName"
+      name="pokemonName"
+      #pokemonNameModel="ngModel"
+    />
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary" type="submit">Cerca Pokemon</button>
+  </div>
+</form>
+
+<div *ngIf="pokemonResult && !pokemonError">
+  <div>
+    <p>Nome: {{ pokemonResult.name }}</p>
+    <p>Peso: {{ pokemonResult.weight }}</p>
+    <p>Altezza: {{ pokemonResult.height }}</p>
+    <p>Abilità: <span *ngFor="let ability of pokemonResult.abilities">{{ ability.ability.name }}; </span></p>
+  </div>
+  <hr>
+  <p>Tutto il file json</p>
+  <div class="scrollable overflow-auto">
+    <pre>{{ pokemonResult | json }}</pre>
+  </div>
+</div>
+
+<div class="alert alert-warning" role="alert" *ngIf="pokemonError">
+  Errore durante la richiesta: {{ pokemonError.status }} {{ pokemonError.error }}
+</div>

@@ -1,0 +1,42 @@
+<h2>Reactive Form</h2>
+<form [formGroup]="autoForm" (submit)="onSubmit()">
+  <div class="form-group">
+    <label for="marca">Marca</label>
+    <input type="text" class="form-control" id="marca" required formControlName="marca">
+  </div>
+  <div class="form-group">
+    <label for="modello">Modello</label>
+    <input type="text" class="form-control" id="modello" required formControlName="modello">
+  </div>
+  <div class="form-group">
+    <label for="annoImmatricolazione">Anno di immatricolazione</label>
+    <input type="text" class="form-control" id="annoImmatricolazione" required formControlName="annoImmatricolazione">
+  </div>
+  <div class="form-group">
+    <label for="targa">Targa</label>
+    <input type="text" class="form-control" id="targa" required formControlName="targa">
+  </div>
+
+  <div class="form-group">
+    <div class="btn-group">
+      <button class="btn btn-danger" type="reset">Cancella form</button>
+      <button class="btn btn-primary" type="submit" [disabled]="autoForm.invalid">Invia</button>
+    </div>
+  </div>
+</form>
+
+<div>
+  <h3>Dati form</h3>
+  <p>Marca: {{ autoForm.get('marca').value }}</p>
+  <p>Modello: {{ autoForm.get('modello').value }}</p>
+  <p>Anno di immatricolazione: {{ autoForm.get('annoImmatricolazione').value }}</p>
+  <p>Targa: {{ autoForm.get('targa').value }}</p>
+</div>
+<hr>
+<div *ngIf="resultVisible">
+  <h3>Dati auto inserita</h3>
+  <p>Marca: {{ myAuto.marca }}</p>
+  <p>Modello: {{ myAuto.modello }}</p>
+  <p>Anno di immatricolazione: {{ myAuto.annoImmatricolazione }}</p>
+  <p>Targa: {{ myAuto.targa }}</p>
+</div>
