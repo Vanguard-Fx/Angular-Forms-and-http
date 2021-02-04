@@ -20,6 +20,9 @@ export class PokeapiComponent implements OnInit {
   }
 
   onFormSubmit(myForm: NgForm ) {
+    this.pokemonResult = undefined;
+    this.pokemonError = undefined;
+
     if(myForm.invalid) return;
 
     this.pokeService.getPokemonByName(this.pokemonName).subscribe(
